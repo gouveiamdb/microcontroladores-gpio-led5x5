@@ -269,7 +269,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         double g = (i == 1) ? 1.0 : 0.0;
         double b = (i == 2) ? 1.0 : 0.0;
         for (int j = 0; j < NUM_PIXELS; j++) {
-            valor_led = matrix_rgb(b, r, g);
+            valor_led = matrix_rgb(r, g, b);
             pio_sm_put_blocking(pio, sm, valor_led);
         }
         sleep_ms(1000);
@@ -280,7 +280,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     double letraE[125] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
         0.0, 0.0, 0.0, 0.0, 1.0,
-        0.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 1.0, 1.0, 1.0, 1.0
     };
@@ -300,11 +300,11 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(3000);
 
     double letraD[125] = {
-        0.0, 1.0, 1.0, 1.0, 1.0,
-        0.0, 1.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 0.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
-        0.0, 1.0, 0.0, 0.0, 1.0,
-        0.0, 1.0, 1.0, 1.0, 1.0
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 0.0
     };
 
     // Exibir letra D

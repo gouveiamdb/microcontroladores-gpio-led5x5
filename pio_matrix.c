@@ -75,6 +75,7 @@ char scan_keypad();
  */
 void execute_comando(char key, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
+
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
 void imprimir_binario(int num);
@@ -82,9 +83,6 @@ void imprimir_binario(int num);
 uint32_t matrix_rgb(double b, double r, double g);
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
-
-
-
 
 /**
  * @brief Função principal do programa.
@@ -253,26 +251,53 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
 }
 
 void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
-    // Define as cores para a onda (R, G, B).
-    double cores[3][3] = {
-        {1.0, 0.0, 0.0}, // Vermelho
-        {0.0, 1.0, 0.0}, // Verde
-        {0.0, 0.0, 1.0}  // Azul
+    // Frame 1: LEDs formam um quadrado ao redor.
+    double quadrado[25] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0
     };
+    desenho_pio(quadrado, valor_led, pio, sm, 1.0, 1.0, 1.0); // Branco
+    sleep_ms(500);
 
-    for (int passo = 0; passo < 3; passo++) {
-        // Cria a "onda" ao longo dos LEDs.
-        for (int i = 0; i < NUM_PIXELS; i++) {
-            if (i % 2 == 0) {
-                valor_led = matrix_rgb(cores[passo][0], cores[passo][1], cores[passo][2]);
-            } else {
-                valor_led = matrix_rgb(cores[passo][2], cores[passo][1], cores[passo][0]);
-            }
-            pio_sm_put_blocking(pio, sm, valor_led); // Envia o valor para o LED.
-            sleep_ms(50); // Controla o tempo entre os LEDs.
+    // Frame 2: LEDs piscam em cores RGB (vermelho, verde e azul).
+    for (int i = 0; i < 3; i++) {
+        double r = (i == 0) ? 1.0 : 0.0;
+        double g = (i == 1) ? 1.0 : 0.0;
+        double b = (i == 2) ? 1.0 : 0.0;
+        for (int j = 0; j < NUM_PIXELS; j++) {
+            valor_led = matrix_rgb(b, r, g);
+            pio_sm_put_blocking(pio, sm, valor_led);
         }
-
-        // Após a onda, apague os LEDs para a próxima iteração.
-        apagar_leds(valor_led, pio, sm);
+        sleep_ms(3000);
     }
+    apagar_leds(valor_led, pio, sm);
+
+    // Frame 3: LEDs mostram a palavra "END".
+    double endFrame[25] = {
+        // E
+        1.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 0.0
+    };
+    desenho_pio(endFrame, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
+    sleep_ms(5000);
+
+    // Frame 4: LEDs piscam rapidamente.
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < NUM_PIXELS; j++) {
+            valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco
+            pio_sm_put_blocking(pio, sm, valor_led);
+        }
+        sleep_ms(1000);
+        apagar_leds(valor_led, pio, sm);
+        sleep_ms(1000);
+    }
+
+    // Frame 5: Todos os LEDs se apagam.
+    apagar_leds(valor_led, pio, sm);
 }

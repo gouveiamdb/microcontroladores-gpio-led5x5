@@ -261,7 +261,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         1.0, 1.0, 1.0, 1.0, 1.0
     };
     desenho_pio(quadrado, valor_led, pio, sm, 1.0, 1.0, 1.0); // Branco
-    sleep_ms(500);
+    sleep_ms(1000);
 
     // Frame 2: LEDs piscam em cores RGB (vermelho, verde e azul).
     for (int i = 0; i < 3; i++) {
@@ -272,7 +272,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
             valor_led = matrix_rgb(b, r, g);
             pio_sm_put_blocking(pio, sm, valor_led);
         }
-        sleep_ms(3000);
+        sleep_ms(1000);
     }
     apagar_leds(valor_led, pio, sm);
 
@@ -286,7 +286,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         1.0, 1.0, 1.0, 1.0, 0.0
     };
     desenho_pio(endFrame, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
-    sleep_ms(5000);
+    sleep_ms(3000);
 
     // Frame 4: LEDs piscam rapidamente.
     for (int i = 0; i < 5; i++) {
@@ -294,9 +294,9 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
             valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco
             pio_sm_put_blocking(pio, sm, valor_led);
         }
-        sleep_ms(1000);
+        sleep_ms(500);
         apagar_leds(valor_led, pio, sm);
-        sleep_ms(1000);
+        sleep_ms(500);
     }
 
     // Frame 5: Todos os LEDs se apagam.

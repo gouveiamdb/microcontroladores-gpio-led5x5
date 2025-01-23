@@ -246,3 +246,28 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
     }
     imprimir_binario(valor_led);
 }
+
+void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
+    // Define as cores para a onda (R, G, B).
+    double cores[3][3] = {
+        {1.0, 0.0, 0.0}, // Vermelho
+        {0.0, 1.0, 0.0}, // Verde
+        {0.0, 0.0, 1.0}  // Azul
+    };
+
+    for (int passo = 0; passo < 3; passo++) {
+        // Cria a "onda" ao longo dos LEDs.
+        for (int i = 0; i < NUM_PIXELS; i++) {
+            if (i % 2 == 0) {
+                valor_led = matrix_rgb(cores[passo][0], cores[passo][1], cores[passo][2]);
+            } else {
+                valor_led = matrix_rgb(cores[passo][2], cores[passo][1], cores[passo][0]);
+            }
+            pio_sm_put_blocking(pio, sm, valor_led); // Envia o valor para o LED.
+            sleep_ms(50); // Controla o tempo entre os LEDs.
+        }
+
+        // Após a onda, apague os LEDs para a próxima iteração.
+        apagar_leds(valor_led, pio, sm);
+    }
+}

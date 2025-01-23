@@ -38,12 +38,82 @@ const char keys[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
-//vetor para criar imagem na matriz de led - 2
-double desenho2[25] =   {1.0, 0.0, 0.0, 0.0, 1.0,
-                        0.0, 1.0, 0.0, 1.0, 0.0, 
-                        0.0, 0.0, 1.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0, 1.0, 0.0,
-                        1.0, 0.0, 0.0, 0.0, 1.0};
+//Vetor de desenho para as letras K, L, M, N e O.
+double tecla_4[125] = {
+    // Letra K
+    1.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 0.0,
+
+    // Letra L
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 0.0,
+
+    // Letra M
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra N
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra O
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+};
+
+//Vetor de desenho para o fim da apresentação.
+double tecla_9[125] = {
+    // Frame 1: LEDs formam um quadrado ao redor.
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    
+    // Frame 2: LEDs piscam em cores RGB (vermelho, verde e azul).
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    
+    // Frame 3: Exibir letra E
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    
+    // Frame 4: Exibir letra N
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    
+    // Frame 5: Exibir letra D
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    
+};
 
 
 /**
@@ -83,7 +153,8 @@ uint32_t matrix_rgb(double b, double r, double g);
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
-void executar_tecla9(uint32_t valor_led, PIO pio, uint sm);
+
+
 
 /**
  * @brief Função principal do programa.
@@ -178,31 +249,46 @@ char scan_keypad() {
 void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
 
     switch (key) {
+        case '1':
+            // Inserir código
+            break;
+
+        case '2':
+            // Inserir código
+            break;
+
+        case '3':
+            // Inserir código
+            break;
+
+        case '4':
+            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
+            break;
+
+        case '9':
+            desenho_pio(tecla_9, valor_led, pio, sm, r, g, b);// Inserir código
+            break;
+
        case 'A':
-            desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
+            // Inserir código
             break;
 
         case 'B':
-
+            // Inserir código
             break;
 
         case 'C':
-
+            // Inserir código
             break;
 
         case 'D':
-  
+            // Inserir código
             break;
             
         case '0':
             //Apaga todos os LEDs
             apagar_leds(valor_led, pio, sm);
             break;
-        
-        case '9':
-            executar_tecla9(valor_led, pio, sm);
-            break;
-
 
         default:
             printf("Comando: Sem comando registrado.\n");
@@ -235,82 +321,14 @@ uint32_t matrix_rgb(double b, double r, double g)
   return (G << 24) | (R << 16) | (B << 8);
 }
 
-void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
-
-    for (int16_t i = 0; i < NUM_PIXELS; i++) {
-        if (i%2==0)
-        {
-            valor_led = matrix_rgb(desenho[24-i], r=0.0, g=0.0);
-            pio_sm_put_blocking(pio, sm, valor_led);
-
-        }else{
-            valor_led = matrix_rgb(b=0.0, desenho[24-i], g=0.0);
+void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int letra = 0; letra < 5; letra++) { // 5 letras, cada uma com 25 LEDs
+        for (int16_t i = 0; i < NUM_PIXELS; i++) {
+            // Calcular o índice correto na matriz para cada letra
+            int indice = (letra * 25) + (24 - i); 
+            valor_led = matrix_rgb(desenho[indice], r, g);
             pio_sm_put_blocking(pio, sm, valor_led);
         }
+        sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
-    imprimir_binario(valor_led);
-}
-
-void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
-    // Frame 1: LEDs formam um quadrado ao redor.
-    double quadrado[125] = {
-        1.0, 1.0, 1.0, 1.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 1.0, 1.0, 1.0, 1.0
-    };
-    desenho_pio(quadrado, valor_led, pio, sm, 1.0, 1.0, 1.0); // Branco
-    sleep_ms(1000);
-
-    // Frame 2: LEDs piscam em cores RGB (vermelho, verde e azul).
-    for (int i = 0; i < 3; i++) {
-        double r = (i == 0) ? 1.0 : 0.0;
-        double g = (i == 1) ? 1.0 : 0.0;
-        double b = (i == 2) ? 1.0 : 0.0;
-        for (int j = 0; j < NUM_PIXELS; j++) {
-            valor_led = matrix_rgb(r, g, b);
-            pio_sm_put_blocking(pio, sm, valor_led);
-        }
-        sleep_ms(1000);
-    }
-    apagar_leds(valor_led, pio, sm);
-
-    // Frame 3, 4 e 5: LEDs piscam para cada letra
-    double letraE[125] = {
-        1.0, 1.0, 1.0, 1.0, 1.0,
-        0.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 1.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 1.0, 1.0, 1.0, 1.0
-    };
-    // Exibir letra E
-    desenho_pio(letraE, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
-    sleep_ms(3000);
-
-    double letraN[125] = {
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 1.0, 1.0,
-        1.0, 0.0, 1.0, 0.0, 1.0,
-        1.0, 1.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0
-    };
-    // Exibir letra N
-    desenho_pio(letraN, valor_led, pio, sm, 0.0, 1.0, 0.0); // Verde
-    sleep_ms(3000);
-
-    double letraD[125] = {
-        1.0, 1.0, 1.0, 1.0, 0.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 1.0, 1.0, 1.0, 0.0
-    };
-
-    // Exibir letra D
-    desenho_pio(letraD, valor_led, pio, sm, 0.0, 0.0, 1.0); // Azul
-    sleep_ms(3000);
-
-    // Todos os LEDs se apagam.
-    apagar_leds(valor_led, pio, sm);
 }

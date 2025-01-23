@@ -199,6 +199,11 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             //Apaga todos os LEDs
             apagar_leds(valor_led, pio, sm);
             break;
+        
+        case '9':
+            executar_tecla9(valor_led, pio, sm);
+            break;
+
 
         default:
             printf("Comando: Sem comando registrado.\n");

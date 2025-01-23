@@ -276,29 +276,41 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     }
     apagar_leds(valor_led, pio, sm);
 
-    // Frame 3: LEDs mostram a palavra "END".
-    double endFrame[25] = {
-        // E
+    // Frame 3, 4 e 5: LEDs piscam para cada letra
+    double letraE[25] = {
         1.0, 1.0, 1.0, 1.0, 0.0,
         1.0, 0.0, 0.0, 0.0, 0.0,
         1.0, 1.0, 1.0, 1.0, 0.0,
         1.0, 0.0, 0.0, 0.0, 0.0,
         1.0, 1.0, 1.0, 1.0, 0.0
     };
-    desenho_pio(endFrame, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
-    sleep_ms(3000);
+    double letraN[25] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0
+    };
+    double letraD[25] = {
+        1.0, 1.0, 1.0, 0.0, 0.0,
+        1.0, 0.0, 0.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 1.0, 0.0,
+        1.0, 1.0, 1.0, 0.0, 0.0
+    };
 
-    // Frame 4: LEDs piscam rapidamente.
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < NUM_PIXELS; j++) {
-            valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco
-            pio_sm_put_blocking(pio, sm, valor_led);
-        }
-        sleep_ms(500);
-        apagar_leds(valor_led, pio, sm);
-        sleep_ms(500);
-    }
+    // Exibir letra E
+    desenho_pio(letraE, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
+    sleep_ms(1000);
 
-    // Frame 5: Todos os LEDs se apagam.
+    // Exibir letra N
+    desenho_pio(letraN, valor_led, pio, sm, 0.0, 1.0, 0.0); // Verde
+    sleep_ms(1000);
+
+    // Exibir letra D
+    desenho_pio(letraD, valor_led, pio, sm, 0.0, 0.0, 1.0); // Azul
+    sleep_ms(1000);
+
+    // Todos os LEDs se apagam.
     apagar_leds(valor_led, pio, sm);
 }

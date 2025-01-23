@@ -38,12 +38,44 @@ const char keys[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
-//vetor para criar imagem na matriz de led - 2
-double desenho2[25] =   {1.0, 0.0, 0.0, 0.0, 1.0,
-                        0.0, 1.0, 0.0, 1.0, 0.0, 
-                        0.0, 0.0, 1.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0, 1.0, 0.0,
-                        1.0, 0.0, 0.0, 0.0, 1.0};
+//Vetor de desenho para as letras K, L, M, N e O.
+double tecla_4[125] = {
+    // Letra K
+    1.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 0.0,
+
+    // Letra L
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 0.0,
+
+    // Letra M
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra N
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra O
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+};
+
 
 
 /**
@@ -179,20 +211,36 @@ char scan_keypad() {
 void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
 
     switch (key) {
+        case '1':
+            // Inserir código
+            break;
+
+        case '2':
+            // Inserir código
+            break;
+
+        case '3':
+            // Inserir código
+            break;
+
+        case '4':
+            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
+            break;
+
        case 'A':
-            desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
+            // Inserir código
             break;
 
         case 'B':
-
+            // Inserir código
             break;
 
         case 'C':
-
+            // Inserir código
             break;
 
         case 'D':
-  
+            // Inserir código
             break;
             
         case '0':
@@ -231,18 +279,14 @@ uint32_t matrix_rgb(double b, double r, double g)
   return (G << 24) | (R << 16) | (B << 8);
 }
 
-void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
-
-    for (int16_t i = 0; i < NUM_PIXELS; i++) {
-        if (i%2==0)
-        {
-            valor_led = matrix_rgb(desenho[24-i], r=0.0, g=0.0);
-            pio_sm_put_blocking(pio, sm, valor_led);
-
-        }else{
-            valor_led = matrix_rgb(b=0.0, desenho[24-i], g=0.0);
+void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int letra = 0; letra < 5; letra++) { // 5 letras, cada uma com 25 LEDs
+        for (int16_t i = 0; i < NUM_PIXELS; i++) {
+            // Calcular o índice correto na matriz para cada letra
+            int indice = (letra * 25) + (24 - i); 
+            valor_led = matrix_rgb(desenho[indice], r, g);
             pio_sm_put_blocking(pio, sm, valor_led);
         }
+        sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
-    imprimir_binario(valor_led);
 }

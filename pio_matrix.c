@@ -253,7 +253,7 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
 
 void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
-    double quadrado[25] = {
+    double quadrado[125] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
@@ -286,7 +286,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     };
     // Exibir letra E
     desenho_pio(letraE, valor_led, pio, sm, 1.0, 0.0, 0.0); // Vermelho
-    sleep_ms(1000);
+    sleep_ms(3000);
 
     double letraN[125] = {
         1.0, 0.0, 0.0, 0.0, 1.0,
@@ -297,19 +297,19 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     };
     // Exibir letra N
     desenho_pio(letraN, valor_led, pio, sm, 0.0, 1.0, 0.0); // Verde
-    sleep_ms(1000);
+    sleep_ms(3000);
 
-    double letraD[25] = {
-        0.0, 0.0, 1.0, 1.0, 1.0,
+    double letraD[125] = {
+        0.0, 1.0, 1.0, 1.0, 1.0,
         0.0, 1.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0, 1.0, 1.0
+        0.0, 1.0, 1.0, 1.0, 1.0
     };
 
     // Exibir letra D
     desenho_pio(letraD, valor_led, pio, sm, 0.0, 0.0, 1.0); // Azul
-    sleep_ms(1000);
+    sleep_ms(3000);
 
     // Todos os LEDs se apagam.
     apagar_leds(valor_led, pio, sm);

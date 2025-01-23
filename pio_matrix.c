@@ -75,7 +75,6 @@ char scan_keypad();
  */
 void execute_comando(char key, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
-
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
 void imprimir_binario(int num);
@@ -83,6 +82,8 @@ void imprimir_binario(int num);
 uint32_t matrix_rgb(double b, double r, double g);
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
+
+void executar_tecla9(uint32_t valor_led, PIO pio, uint sm);
 
 /**
  * @brief Função principal do programa.

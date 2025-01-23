@@ -76,7 +76,42 @@ double tecla_4[125] = {
     0.0, 1.0, 1.0, 1.0, 0.0,
 };
 
+double tecla_8[125] = {
+    //Numero 5
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
 
+    // Numero 6
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    //Numero 7
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0,
+
+    //Numero 8
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    //Numero 9
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    };
 
 /**
  * @brief Configura os GPIOs para o teclado matricial, LEDs e buzzer.
@@ -115,6 +150,7 @@ uint32_t matrix_rgb(double b, double r, double g);
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
 
 
@@ -227,6 +263,18 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
             break;
 
+        case '6':
+            // Inserir código
+            break;
+
+        case '7':
+            // Inserir código
+            break;
+
+        case '8':
+            desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
+            break;
+
        case 'A':
             // Inserir código
             break;
@@ -240,7 +288,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'D':
-            // Inserir código
+            tecla_d(valor_led, pio, sm);
             break;
             
         case '0':
@@ -253,6 +301,16 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             printf("\n");
             break;
     }
+}
+
+void tecla_d(uint32_t valor_led, PIO pio, uint sm)
+{
+    for (int i = 0; i < NUM_PIXELS; i++)
+    {
+        valor_led = matrix_rgb(0.0, 0.0, 0.5);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
 }
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {

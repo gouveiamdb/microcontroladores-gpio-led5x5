@@ -304,9 +304,9 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
         case '4':
             desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
             break;
-            
-	    case '5':
-	        desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
+        
+        case '5':
+	          desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
             break;
 
         case '6':
@@ -319,6 +319,9 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
         case '8':
             desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
+
+        case '9':
+            executar_tecla9(valor_led, pio, sm);
             break;
 
        case 'A':
@@ -393,5 +396,76 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
             pio_sm_put_blocking(pio, sm, valor_led);
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
+
+void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
+    // Frame 1: LEDs formam um quadrado ao redor.
+    double quadrado[125] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco (B = R = G = 1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
     }
+    sleep_ms(2000);
+
+    // Frame 2: Seta apontando para baixo
+    double seta[125] = {
+        0.0, 1.0, 1.0, 1.0, 0.0, 
+        1.0, 0.0, 1.0, 0.0, 1.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(seta[i], 0.0, 0.0); // Azul (B=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 3: LEDs formam a letra E
+    double letraE[125] = {
+        1.0, 1.0, 1.0, 1.0, 1.0, 
+        1.0, 0.0, 0.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 1.0, 1.0, 
+        1.0, 0.0, 0.0, 0.0, 0.0, 
+        1.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraE[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 4: LEDs formam a letra N
+    double letraN[125] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraN[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+    
+    // Frame 5: LEDs formam a letra D
+    double letraD[125] = {
+        0.0, 1.0, 1.0, 1.0,10.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraD[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
 }

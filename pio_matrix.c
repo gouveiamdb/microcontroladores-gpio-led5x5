@@ -191,6 +191,7 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla9(uint32_t valor_led, PIO pio, uint sm);
 
 
 /**
@@ -319,6 +320,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
         case '8':
             desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
+            break;
 
         case '9':
             tecla9(valor_led, pio, sm); // Executa a animação de encerramento com a mensagem END.
@@ -401,7 +403,7 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
 
 void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
-    double quadrado[125] = {
+    double quadrado[25] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
         1.0, 1.0, 1.0, 1.0, 1.0,
         1.0, 1.0, 1.0, 1.0, 1.0,
@@ -415,7 +417,7 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 2: Seta apontando para baixo
-    double seta[125] = {
+    double seta[25] = {
         0.0, 1.0, 1.0, 1.0, 0.0, 
         1.0, 0.0, 1.0, 0.0, 1.0, 
         0.0, 0.0, 1.0, 0.0, 0.0, 
@@ -429,7 +431,7 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 3: LEDs formam a letra E
-    double letraE[125] = {
+    double letraE[25] = {
         1.0, 1.0, 1.0, 1.0, 1.0, 
         1.0, 0.0, 0.0, 0.0, 0.0, 
         0.0, 0.0, 1.0, 1.0, 1.0, 
@@ -443,7 +445,7 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 4: LEDs formam a letra N
-    double letraN[125] = {
+    double letraN[25] = {
         1.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 1.0, 1.0,
         1.0, 0.0, 1.0, 0.0, 1.0,
@@ -457,7 +459,7 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
     
     // Frame 5: LEDs formam a letra D
-    double letraD[125] = {
+    double letraD[25] = {
         0.0, 1.0, 1.0, 1.0,10.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 0.0, 1.0,

@@ -337,9 +337,9 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
     double quadrado[125] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
-        1.0, 0.0, 1.0, 0.0, 1.0,
-        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0,
         1.0, 1.0, 1.0, 1.0, 1.0
     };
     for (int i = 0; i < NUM_PIXELS; i++) {

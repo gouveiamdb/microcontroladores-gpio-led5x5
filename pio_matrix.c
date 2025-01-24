@@ -306,7 +306,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
         
         case '5':
-	          desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
+	        desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
             break;
 
         case '6':

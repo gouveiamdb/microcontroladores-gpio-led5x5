@@ -76,6 +76,45 @@ double tecla_4[125] = {
     0.0, 1.0, 1.0, 1.0, 0.0,
 };
 
+//Vetor de desenho para as letras P, Q, R, S e T.
+double tecla_5[125] = {
+    // Letra P
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+
+    // Letra Q
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Letra R
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 0.0,
+
+    // Letra S
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Letra T
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 1.0, 0.0, 0.0, 
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0};
+
+
+
 double tecla_8[125] = {
     //Numero 5
     1.0, 1.0, 1.0, 1.0, 1.0,
@@ -199,6 +238,9 @@ int main() {
 }
 
 // Implementações das funções
+
+
+
 void setup_gpio() {
     // Configurando as linhas (ROW) como saídas
     gpio_init(ROW1);
@@ -248,7 +290,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            // Inserir código
+            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
             break;
 
         case '2':
@@ -261,6 +303,10 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
         case '4':
             desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
+            break;
+            
+	    case '5':
+	        desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
             break;
 
         case '6':
@@ -296,6 +342,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             apagar_leds(valor_led, pio, sm);
             break;
 
+ 
         default:
             printf("Comando: Sem comando registrado.\n");
             printf("\n");

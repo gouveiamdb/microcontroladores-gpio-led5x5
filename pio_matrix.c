@@ -290,7 +290,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
+            // Inserir código
             break;
 
         case '2':
@@ -306,7 +306,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
         
         case '5':
-	          desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
+	        desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
             break;
 
         case '6':
@@ -321,10 +321,10 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
 
         case '9':
-            executar_tecla9(valor_led, pio, sm);
+            tecla9(valor_led, pio, sm); // Executa a animação de encerramento com a mensagem END.
             break;
 
-       case 'A':
+        case 'A':
             // Inserir código
             break;
 
@@ -396,8 +396,10 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
             pio_sm_put_blocking(pio, sm, valor_led);
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
+    }
+}
 
-void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
+void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
     double quadrado[125] = {
         1.0, 1.0, 1.0, 1.0, 1.0,

@@ -343,11 +343,12 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         1.0, 1.0, 1.0, 1.0, 1.0
     };
     for (int i = 0; i < NUM_PIXELS; i++) {
-        valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco
+        valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco (B = R = G = 1.0)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
-    sleep_ms(1000);
+    sleep_ms(2000);
 
+    // Frame 2: Seta apontando para baixo
     double seta[125] = {
         0.0, 1.0, 1.0, 1.0, 0.0, 
         1.0, 0.0, 1.0, 0.0, 1.0, 
@@ -359,6 +360,47 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         valor_led = matrix_rgb(seta[i], 0.0, 0.0); // Azul (B=1.0)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
-    sleep_ms(1000);
+    sleep_ms(2000);
 
+    // Frame 3: LEDs formam a letra E
+    double letraE[125] = {
+        1.0, 1.0, 1.0, 1.0, 1.0, 
+        1.0, 0.0, 0.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 1.0, 1.0, 
+        1.0, 0.0, 0.0, 0.0, 0.0, 
+        1.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraE[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 4: LEDs formam a letra N
+    double letraN[125] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 1.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 1.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraN[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+    
+    // Frame 5: LEDs formam a letra D
+    double letraD[125] = {
+        0.0, 1.0, 1.0, 1.0,10.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, letraD[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
 }

@@ -396,6 +396,8 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
             pio_sm_put_blocking(pio, sm, valor_led);
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
+    }
+}
 
 void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
@@ -467,5 +469,4 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     sleep_ms(2000);
-
 }

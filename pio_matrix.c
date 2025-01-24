@@ -76,45 +76,81 @@ double tecla_4[125] = {
     0.0, 1.0, 1.0, 1.0, 0.0,
 };
 
-//Vetor de desenho para o fim da apresentação.
-double tecla_9[125] = {
-    // Frame 1: LEDs formam um quadrado ao redor.
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    
-    // Frame 2: LEDs piscam em cores RGB (vermelho, verde e azul).
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    
-    // Frame 3: Exibir letra E
-    1.0, 1.0, 1.0, 1.0, 1.0,
+//Vetor de desenho para as letras P, Q, R, S e T.
+double tecla_5[125] = {
+    // Letra P
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 1.0,
-    
-    // Frame 4: Exibir letra N
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+
+    // Letra Q
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0, 
     1.0, 0.0, 1.0, 0.0, 1.0,
     1.0, 1.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    
-    // Frame 5: Exibir letra D
-    1.0, 1.0, 1.0, 1.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 0.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 0.0,
-    
-};
+    0.0, 1.0, 1.0, 1.0, 1.0,
 
+    // Letra R
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 0.0,
+
+    // Letra S
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Letra T
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 1.0, 0.0, 0.0, 
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0};
+
+
+
+double tecla_8[125] = {
+    //Numero 5
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Numero 6
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    //Numero 7
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0,
+
+    //Numero 8
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    //Numero 9
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    };
 
 /**
  * @brief Configura os GPIOs para o teclado matricial, LEDs e buzzer.
@@ -153,6 +189,7 @@ uint32_t matrix_rgb(double b, double r, double g);
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
 
 
@@ -201,6 +238,9 @@ int main() {
 }
 
 // Implementações das funções
+
+
+
 void setup_gpio() {
     // Configurando as linhas (ROW) como saídas
     gpio_init(ROW1);
@@ -250,7 +290,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            // Inserir código
+            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
             break;
 
         case '2':
@@ -264,6 +304,21 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
         case '4':
             desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
             break;
+        
+        case '5':
+	          desenho_pio(tecla_5, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto P até T.
+            break;
+
+        case '6':
+            // Inserir código
+            break;
+
+        case '7':
+            // Inserir código
+            break;
+
+        case '8':
+            desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
 
         case '9':
             executar_tecla9(valor_led, pio, sm);
@@ -282,7 +337,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'D':
-            // Inserir código
+            tecla_d(valor_led, pio, sm);
             break;
             
         case '0':
@@ -290,11 +345,22 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             apagar_leds(valor_led, pio, sm);
             break;
 
+ 
         default:
             printf("Comando: Sem comando registrado.\n");
             printf("\n");
             break;
     }
+}
+
+void tecla_d(uint32_t valor_led, PIO pio, uint sm)
+{
+    for (int i = 0; i < NUM_PIXELS; i++)
+    {
+        valor_led = matrix_rgb(0.0, 0.0, 0.5);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
 }
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
@@ -330,8 +396,6 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
             pio_sm_put_blocking(pio, sm, valor_led);
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
-    }
-}
 
 void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
@@ -403,4 +467,5 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     sleep_ms(2000);
+
 }

@@ -11,14 +11,14 @@
 #include "pio_matrix.pio.h"
 
 // Definição dos pinos do Keypad
-#define ROW1 28
-#define ROW2 27
-#define ROW3 26
-#define ROW4 22
-#define COL1 21
-#define COL2 20
-#define COL3 19
-#define COL4 18
+#define ROW1 16
+#define ROW2 17
+#define ROW3 18
+#define ROW4 19
+#define COL1 20
+#define COL2 4
+#define COL3 9
+#define COL4 8
 
 //Pino de saída
 #define OUT_PIN 7
@@ -290,7 +290,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            desenho_pio(tecla_4, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto K até O.
+            // Desenha as letras do alfabeto K até O.
             break;
 
         case '2':
@@ -319,6 +319,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
         case '8':
             desenho_pio(tecla_8, valor_led, pio, sm, r, g, b);
+            break;
 
         case '9':
             executar_tecla9(valor_led, pio, sm);
@@ -415,7 +416,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 2: Seta apontando para baixo
-    double seta[125] = {
+    double seta[25] = {
         0.0, 1.0, 1.0, 1.0, 0.0, 
         1.0, 0.0, 1.0, 0.0, 1.0, 
         0.0, 0.0, 1.0, 0.0, 0.0, 
@@ -429,7 +430,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 3: LEDs formam a letra E
-    double letraE[125] = {
+    double letraE[25] = {
         1.0, 1.0, 1.0, 1.0, 1.0, 
         1.0, 0.0, 0.0, 0.0, 0.0, 
         0.0, 0.0, 1.0, 1.0, 1.0, 
@@ -443,7 +444,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 
     // Frame 4: LEDs formam a letra N
-    double letraN[125] = {
+    double letraN[25] = {
         1.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 1.0, 1.0,
         1.0, 0.0, 1.0, 0.0, 1.0,
@@ -457,7 +458,7 @@ void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
     
     // Frame 5: LEDs formam a letra D
-    double letraD[125] = {
+    double letraD[25] = {
         0.0, 1.0, 1.0, 1.0,10.0,
         1.0, 0.0, 0.0, 0.0, 1.0,
         1.0, 0.0, 0.0, 0.0, 1.0,

@@ -266,7 +266,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '9':
-            desenho_pio(tecla_9, valor_led, pio, sm, r, g, b);// Inserir código
+            executar_tecla9(valor_led, pio, sm);
             break;
 
        case 'A':
@@ -331,4 +331,34 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
+}
+
+void executar_tecla9(uint32_t valor_led, PIO pio, uint sm) {
+    // Frame 1: LEDs formam um quadrado ao redor.
+    double quadrado[125] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(1.0, 1.0, 1.0); // Branco
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(1000);
+
+    double seta[125] = {
+        0.0, 1.0, 1.0, 1.0, 0.0, 
+        1.0, 0.0, 1.0, 0.0, 1.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0, 
+        0.0, 0.0, 1.0, 0.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(seta[i], 0.0, 0.0); // Azul (B=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(1000);
+
 }

@@ -266,6 +266,8 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla_hash(PIO pio, uint sm);
+
 void tecla9(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla_1(uint32_t valor_led, PIO pio, uint sm);
@@ -316,7 +318,6 @@ int main() {
 }
 
 // Implementações das funções
-
 
 
 void setup_gpio() {
@@ -419,6 +420,10 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
         case 'D':
             tecla_d(valor_led, pio, sm);
             break;
+
+        case '#':
+            tecla_hash(pio, sm);
+            break;
             
         case '0':
             // Inserir código
@@ -440,6 +445,13 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
+}
+
+void tecla_hash(PIO pio, uint sm) {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, matrix_rgb(0.2, 0.2, 0.2));
+    }
+    printf("Todos os LEDs foram acessos na cor branca com intensidade de 20%.\n");
 }
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {

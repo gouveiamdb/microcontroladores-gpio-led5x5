@@ -38,6 +38,44 @@ const char keys[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
+//Vetor de desenho para as letras F, G, H, I e J.
+double tecla_3[125] = {
+    // Letra F
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 0.0,
+
+    // Letra G
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Letra H
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra I
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    // Letra J
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 0.0, 0.0,
+};
+
 //Vetor de desenho para as letras K, L, M, N e O.
 double tecla_4[125] = {
     // Letra K
@@ -113,6 +151,43 @@ double tecla_5[125] = {
     0.0, 0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0, 0.0};
 
+//Vetor de desenho para os númeoros 0,1,2,3,4.
+double tecla_7[125] = {
+    //Numero 0
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 1.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    // Numero 1
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 1.0, 0.0, 
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    //Numero 2
+    0.0, 0.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 1.0, 1.0, 1.0,
+
+    //Numero 3
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 0.0, 1.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+
+    //Numero 4
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 1.0, 0.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    };
 
 
 double tecla_8[125] = {
@@ -179,19 +254,42 @@ char scan_keypad();
  *
  * @param key A tecla pressionada.
  */
+// Executa um comando baseado em uma tecla pressionada e controla os LEDs conforme o valor fornecido
 void execute_comando(char key, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
+// Desenha um padrão de LEDs usando o periférico PIO (Programmable Input/Output) do RP2040
+// Parâmetros:
+// - desenho: ponteiro para os dados do desenho a serem exibidos
+// - valor_led: valor que representa os LEDs que devem ser alterados
+// - pio: controlador PIO utilizado
+// - sm: state machine dentro do PIO
+// - r, g, b: valores de cor em formato de ponto flutuante (0.0 a 1.0)
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
+// Imprime a representação binária de um número inteiro de 32 bits
+// Útil para depuração e visualização de bits individuais
 void imprimir_binario(int num);
 
+// Converte valores de cor em formato de ponto flutuante (0.0 a 1.0) para um valor de 32 bits no formato RGB
+// Retorna uma composição das cores em um único valor de 32 bits (G << 24 | R << 16 | B << 8)
 uint32_t matrix_rgb(double b, double r, double g);
 
+// Apaga todos os LEDs controlados pelo periférico PIO, definindo seus valores para zero
+// Parâmetros:
+// - valor_led: valor que representa os LEDs que devem ser apagados
+// - pio: controlador PIO utilizado
+// - sm: state machine dentro do PIO
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
+// Aciona uma ação específica quando a tecla 'D' é pressionada, alterando o estado dos LEDs
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
+// Aciona uma ação específica quando a tecla '9' é pressionada, alterando o estado dos LEDs
 void tecla9(uint32_t valor_led, PIO pio, uint sm);
+
+// Aciona uma ação específica quando a tecla '1' é pressionada, alterando o estado dos LEDs
+void tecla_1(uint32_t valor_led, PIO pio, uint sm);
+
 
 
 /**
@@ -291,7 +389,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            // Inserir código
+           tecla_1(valor_led, pio, sm); // Executa a animação de abertura e a mensagem GO.
             break;
 
         case '2':
@@ -299,7 +397,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '3':
-            // Inserir código
+            desenho_pio(tecla_3, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto F até J.
             break;
 
         case '4':
@@ -315,7 +413,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '7':
-            // Inserir código
+            desenho_pio(tecla_7, valor_led, pio, sm, r, g, b); // Desenha os números de 0 a 4.
             break;
 
         case '8':
@@ -327,7 +425,8 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'A':
-            // Inserir código
+            //Desliga todos os LEDs
+            apagar_leds(valor_led, pio, sm);
             break;
 
         case 'B':
@@ -343,8 +442,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
             
         case '0':
-            //Apaga todos os LEDs
-            apagar_leds(valor_led, pio, sm);
+            // Inserir código
             break;
 
  
@@ -355,6 +453,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
     }
 }
 
+// Função da tecla 'd' para acender todos os leds na cor verde com intensidade de 50%
 void tecla_d(uint32_t valor_led, PIO pio, uint sm)
 {
     for (int i = 0; i < NUM_PIXELS; i++)
@@ -365,6 +464,7 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm)
     printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
 }
 
+// Função para apagar todos os leds
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
     for (int i = 0; i < NUM_PIXELS; i++) {
                 valor_led = matrix_rgb(0.0, 0.0, 0.0);  // Todos os LEDs desligados
@@ -373,6 +473,7 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
             printf("Todos os LEDs foram apagados.\n");  
 }
 
+// Função para imprimir a representação binária de um número inteiro de 32 bits
 void imprimir_binario(int num) {
  int i;
  for (i = 31; i >= 0; i--) {
@@ -380,6 +481,7 @@ void imprimir_binario(int num) {
  }
 }
 
+// Função para converter valores de cor em uma matriz RGB de 32 bits
 uint32_t matrix_rgb(double b, double r, double g)
 {
   unsigned char R, G, B;
@@ -389,6 +491,7 @@ uint32_t matrix_rgb(double b, double r, double g)
   return (G << 24) | (R << 16) | (B << 8);
 }
 
+// Função para fazer os desenhos 
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     for (int letra = 0; letra < 5; letra++) { // 5 letras, cada uma com 25 LEDs
         for (int16_t i = 0; i < NUM_PIXELS; i++) {
@@ -468,6 +571,78 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     };
     for (int i = 0; i < NUM_PIXELS; i++) {
         valor_led = matrix_rgb(0.0, letraD[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+}
+
+    void tecla_1(uint32_t valor_led, PIO pio, uint sm) {
+    // Frame 1: LEDs formam um quadrado ao redor de um ponto.
+    double quadrado[25] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(quadrado[i], quadrado[i], quadrado[i]); // Branco (B = R = G = 1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 2: LEDs formam um X
+    double X[25] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0 
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(X[i], X[i], X[i]); // Azul (B=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 3: LEDs formam uma carinha
+    double carinha[25] = {
+        0.0, 1.0, 1.0, 1.0, 0.0, 
+        1.0, 0.0, 0.0, 0.0, 1.0, 
+        0.0, 1.0, 0.0, 1.0, 0.0, 
+        0.0, 1.0, 0.0, 1.0, 0.0, 
+        0.0, 0.0, 0.0, 0.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, carinha[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 4: LEDs formam a letra G
+    double letraG[25] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, 0.0, letraG[i]); // Verde (G=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+    
+    // Frame 5: LEDs formam a letra O
+    double letraO[25] = {
+        0.0, 1.0, 1.0, 1.0,0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, 0.0, letraO[i]); // Verde (G=1.0)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     sleep_ms(2000);

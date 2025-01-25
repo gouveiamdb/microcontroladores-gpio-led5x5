@@ -193,6 +193,8 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla9(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla_c(uint32_t valor_led, PIO pio, uint sm);
+
 
 /**
  * @brief Função principal do programa.
@@ -335,7 +337,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'C':
-            // Inserir código
+            tecla_c(valor_led, pio, sm);
             break;
 
         case 'D':
@@ -399,6 +401,15 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
         }
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
+}
+void tecla_c(uint32_t valor_led, PIO pio, uint sm)
+{
+    for (int i = 0; i < NUM_PIXELS; i++)
+    {
+        valor_led = matrix_rgb(0.0, 0.8, 0.0); 
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    printf("Todos os LEDs foram acessados na cor vermelha com intensidade de 80 porcento.\n");
 }
 
 void tecla9(uint32_t valor_led, PIO pio, uint sm) {

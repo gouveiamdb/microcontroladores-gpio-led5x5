@@ -193,6 +193,8 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla9(uint32_t valor_led, PIO pio, uint sm);
 
+void tecla_1(uint32_t valor_led, PIO pio, uint sm);
+
 
 /**
  * @brief Função principal do programa.
@@ -291,7 +293,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
     switch (key) {
         case '1':
-            // Inserir código
+           tecla_1(valor_led, pio, sm); // Executa a animação de abertura e a mensagem GO.
             break;
 
         case '2':
@@ -327,7 +329,8 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'A':
-            // Inserir código
+            //Desliga todos os LEDs
+            apagar_leds(valor_led, pio, sm);
             break;
 
         case 'B':
@@ -343,8 +346,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
             
         case '0':
-            //Apaga todos os LEDs
-            apagar_leds(valor_led, pio, sm);
+            // Inserir código
             break;
 
  
@@ -468,6 +470,78 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     };
     for (int i = 0; i < NUM_PIXELS; i++) {
         valor_led = matrix_rgb(0.0, letraD[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+}
+
+    void tecla_1(uint32_t valor_led, PIO pio, uint sm) {
+    // Frame 1: LEDs formam um quadrado ao redor de um ponto.
+    double quadrado[25] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(quadrado[i], quadrado[i], quadrado[i]); // Branco (B = R = G = 1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 2: LEDs formam um X
+    double X[25] = {
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 1.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 1.0, 0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0 
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(X[i], X[i], X[i]); // Azul (B=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 3: LEDs formam uma carinha
+    double carinha[25] = {
+        0.0, 1.0, 1.0, 1.0, 0.0, 
+        1.0, 0.0, 0.0, 0.0, 1.0, 
+        0.0, 1.0, 0.0, 1.0, 0.0, 
+        0.0, 1.0, 0.0, 1.0, 0.0, 
+        0.0, 0.0, 0.0, 0.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, carinha[i], 0.0); // Vermelho (R=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+
+    // Frame 4: LEDs formam a letra G
+    double letraG[25] = {
+        1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 0.0,
+        1.0, 1.0, 1.0, 1.0, 1.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, 0.0, letraG[i]); // Verde (G=1.0)
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    sleep_ms(2000);
+    
+    // Frame 5: LEDs formam a letra O
+    double letraO[25] = {
+        0.0, 1.0, 1.0, 1.0,0.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        1.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 1.0, 1.0, 0.0  
+    };
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        valor_led = matrix_rgb(0.0, 0.0, letraO[i]); // Verde (G=1.0)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     sleep_ms(2000);

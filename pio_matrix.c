@@ -7,7 +7,7 @@
 #include "hardware/adc.h"
 #include "pico/bootrom.h"
 
-//arquivo .pio
+// Arquivo .pio
 #include "pio_matrix.pio.h"
 
 // Definição dos pinos do Keypad
@@ -20,10 +20,10 @@
 #define COL3 19
 #define COL4 18
 
-//Pino de saída
+// Pino de saída
 #define OUT_PIN 7
 
-//número de LEDs
+// Número de LEDs
 #define NUM_PIXELS 25
 
 /**
@@ -38,7 +38,7 @@ const char keys[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
-//Vetor de desenho para as letras F, G, H, I e J.
+// Vetor de desenho para as letras F, G, H, I e J.
 double tecla_3[125] = {
     // Letra F
     1.0, 1.0, 1.0, 1.0, 1.0,
@@ -76,7 +76,7 @@ double tecla_3[125] = {
     1.0, 1.0, 1.0, 0.0, 0.0,
 };
 
-//Vetor de desenho para as letras K, L, M, N e O.
+// Vetor de desenho para as letras K, L, M, N e O.
 double tecla_4[125] = {
     // Letra K
     1.0, 0.0, 0.0, 1.0, 0.0,
@@ -114,7 +114,7 @@ double tecla_4[125] = {
     0.0, 1.0, 1.0, 1.0, 0.0,
 };
 
-//Vetor de desenho para as letras P, Q, R, S e T.
+// Vetor de desenho para as letras P, Q, R, S e T.
 double tecla_5[125] = {
     // Letra P
     1.0, 1.0, 1.0, 1.0, 0.0,
@@ -151,7 +151,45 @@ double tecla_5[125] = {
     0.0, 0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0, 0.0};
 
-//Vetor de desenho para os númeoros 0,1,2,3,4.
+// Vetor de desenho para as letras U, V, W, X, e Y.
+double tecla_6[125] = {
+    // Letra U 
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+
+    // Letra V
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+
+    // Letra W
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 1.0, 0.0, 1.0,
+    1.0, 1.0, 0.0, 1.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra X
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+
+    // Letra Y
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    1.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 1.0, 1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0,
+};
+
+// Vetor de desenho para os números 0, 1, 2, 3 e 4.
 double tecla_7[125] = {
     //Numero 0
     0.0, 1.0, 1.0, 1.0, 0.0,
@@ -189,7 +227,7 @@ double tecla_7[125] = {
     0.0, 0.0, 1.0, 0.0, 0.0,
     };
 
-
+// Vetor de desenho para os números 5, 6, 7, 8 e 9.
 double tecla_8[125] = {
     //Numero 5
     1.0, 1.0, 1.0, 1.0, 1.0,
@@ -266,7 +304,9 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
-void tecla9(uint32_t valor_led, PIO pio, uint sm);
+void tecla_hash(PIO pio, uint sm);
+
+void tecla_9(uint32_t valor_led, PIO pio, uint sm);
 
 void tecla_1(uint32_t valor_led, PIO pio, uint sm);
 
@@ -315,8 +355,8 @@ int main() {
     }
 }
 
-// Implementações das funções
 
+// Implementações das funções
 
 
 void setup_gpio() {
@@ -388,7 +428,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '6':
-            // Inserir código
+	        desenho_pio(tecla_6, valor_led, pio, sm, r, g, b); // Desenha as letras do alfabeto U até Z.
             break;
 
         case '7':
@@ -400,7 +440,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '9':
-            tecla9(valor_led, pio, sm); // Executa a animação de encerramento com a mensagem END.
+            tecla_9(valor_led, pio, sm); // Executa a animação de encerramento com a mensagem END.
             break;
 
         case 'A':
@@ -419,12 +459,15 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
         case 'D':
             tecla_d(valor_led, pio, sm);
             break;
+
+        case '#':
+            tecla_hash(pio, sm);
+            break;
             
         case '0':
             // Inserir código
             break;
 
- 
         default:
             printf("Comando: Sem comando registrado.\n");
             printf("\n");
@@ -440,6 +483,13 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm)
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
+}
+
+void tecla_hash(PIO pio, uint sm) {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, matrix_rgb(0.2, 0.2, 0.2));
+    }
+    printf("Todos os LEDs foram acessos na cor branca com intensidade de 20%.\n");
 }
 
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
@@ -478,7 +528,7 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
     }
 }
 
-void tecla9(uint32_t valor_led, PIO pio, uint sm) {
+void tecla_9(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor.
     double quadrado[25] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
@@ -550,7 +600,7 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
     sleep_ms(2000);
 }
 
-    void tecla_1(uint32_t valor_led, PIO pio, uint sm) {
+void tecla_1(uint32_t valor_led, PIO pio, uint sm) {
     // Frame 1: LEDs formam um quadrado ao redor de um ponto.
     double quadrado[25] = {
         1.0, 1.0, 1.0, 1.0, 1.0,
@@ -620,5 +670,4 @@ void tecla9(uint32_t valor_led, PIO pio, uint sm) {
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     sleep_ms(2000);
-
 }

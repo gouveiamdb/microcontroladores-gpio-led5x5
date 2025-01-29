@@ -37,7 +37,21 @@ const char keys[4][4] = {
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}
 };
+//botão B
+double blue_max[25] = {1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0};
 
+//vetor para criar as letras de A a E
+double letras[125] = {
+    {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0}, // A
+    {1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0}, // B
+    {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0}, // C
+    {1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0}, // D
+    {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0}  // E
+};
 
 // Vetor de desenho para as letras F, G, H, I e J.
 double tecla_3[125] = {
@@ -434,7 +448,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '2':
-            // Inserir código
+            desenho_pio(letras, valor_led, pio, sm, r, g, b);
             break;
 
         case '3':
@@ -471,7 +485,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'B':
-            // Inserir código
+            desenho_pio(blue_max, valor_led, pio, sm, 0.0, 0.0, 1.0);
             break;
 
         case 'C':

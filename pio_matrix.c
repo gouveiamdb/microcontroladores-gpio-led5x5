@@ -462,6 +462,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
 
         case '2':
             desenho_pio(letras, valor_led, pio, sm, r, g, b);
+            desenho_pio(letras, valor_led, pio, sm, r, g, b);
             break;
 
         case '3':

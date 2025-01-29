@@ -37,7 +37,32 @@ const char keys[4][4] = {
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}
 };
+//botão B
+double blue_max[25] = {1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0, 1.0};
 
+//vetor para criar as letras de A a E
+double letras[125] = {
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, // A
+    1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, // B
+
+    1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 0.0, 0.0, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 1.0, // C
+    
+    1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, // D
+    
+    1.0, 1.0, 1.0, 1.0, 1.0, 
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 1.0, 
+    1.0, 1.0, 1.0, 1.0, 1.0  // E
+};
 
 // Vetor de desenho para as letras F, G, H, I e J.
 double tecla_3[125] = {
@@ -324,14 +349,13 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 // Aciona uma ação específica quando a tecla 'D' é pressionada, alterando o estado dos LEDs
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
-// tecla_hash: Executa a ação associada à tecla '#'
 void tecla_hash(PIO pio, uint sm);
 
-// Executa a animação de encerramento, exibindo a mensagem "END" nos LEDs.
 void tecla_9(uint32_t valor_led, PIO pio, uint sm);
 
-// Realiza a ação associada à tecla 'C', controle dos LEDs para a cor vermelha com intensidade 80%.
 void tecla_c(uint32_t valor_led, PIO pio, uint sm);
+
+void tecla_b(uint32_t valor_led, PIO pio, uint sm);
 
 // Aciona uma ação específica quando a tecla '1' é pressionada, alterando o estado dos LEDs
 void tecla_1(uint32_t valor_led, PIO pio, uint sm);
@@ -429,7 +453,6 @@ char scan_keypad() {
     return '\0';
 }
 
-// Função para executar os comandos das teclas pressionadas
 void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
 
     switch (key) {
@@ -438,7 +461,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case '2':
-            // Inserir código
+            desenho_pio(letras, valor_led, pio, sm, r, g, b);
             break;
 
         case '3':
@@ -475,7 +498,7 @@ void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, do
             break;
 
         case 'B':
-            // Inserir código
+            tecla_b(valor_led, pio, sm);
             break;
 
         case 'C':
@@ -512,7 +535,7 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm)
     printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
 }
 
-// Função para acender os leds na cor branca com intensidade de 20%
+// Função para apagar todos os leds
 void tecla_hash(PIO pio, uint sm) {
     for (int i = 0; i < NUM_PIXELS; i++) {
         pio_sm_put_blocking(pio, sm, matrix_rgb(0.2, 0.2, 0.2));
@@ -520,7 +543,6 @@ void tecla_hash(PIO pio, uint sm) {
     printf("Todos os LEDs foram acessos na cor branca com intensidade de 20%.\n");
 }
 
-// Função para apagar todos os leds
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
     for (int i = 0; i < NUM_PIXELS; i++) {
                 valor_led = matrix_rgb(0.0, 0.0, 0.0);  // Todos os LEDs desligados
@@ -559,8 +581,16 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
 }
+void tecla_b(uint32_t valor_led, PIO pio, uint sm)
+{
+    for (int i = 0; i < NUM_PIXELS; i++)
+    {
+        valor_led = matrix_rgb(1.0, 0.0, 0.0); 
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    printf("Todos os LEDs foram acessados na cor auzl com intensidade de 100 porcento.\n");
+}
 
-// Função para acender os leds na cor vermelha com intensidade de 80%
 void tecla_c(uint32_t valor_led, PIO pio, uint sm)
 {
     for (int i = 0; i < NUM_PIXELS; i++)

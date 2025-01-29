@@ -338,10 +338,13 @@ void apagar_leds(uint32_t valor_led, PIO pio, uint sm);
 // Aciona uma ação específica quando a tecla 'D' é pressionada, alterando o estado dos LEDs
 void tecla_d(uint32_t valor_led, PIO pio, uint sm);
 
+// tecla_hash: Executa a ação associada à tecla '#'
 void tecla_hash(PIO pio, uint sm);
 
+// Executa a animação de encerramento, exibindo a mensagem "END" nos LEDs.
 void tecla_9(uint32_t valor_led, PIO pio, uint sm);
 
+// Realiza a ação associada à tecla 'C', controle dos LEDs para a cor vermelha com intensidade 80%.
 void tecla_c(uint32_t valor_led, PIO pio, uint sm);
 
 // Aciona uma ação específica quando a tecla '1' é pressionada, alterando o estado dos LEDs
@@ -440,6 +443,7 @@ char scan_keypad() {
     return '\0';
 }
 
+// Função para executar os comandos das teclas pressionadas
 void execute_comando(char key,uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
 
     switch (key) {
@@ -522,7 +526,7 @@ void tecla_d(uint32_t valor_led, PIO pio, uint sm)
     printf("Todos os LEDs foram acessos na cor verde com intensidade de 50 porcento.\n");
 }
 
-// Função para apagar todos os leds
+// Função para acender os leds na cor branca com intensidade de 20%
 void tecla_hash(PIO pio, uint sm) {
     for (int i = 0; i < NUM_PIXELS; i++) {
         pio_sm_put_blocking(pio, sm, matrix_rgb(0.2, 0.2, 0.2));
@@ -530,6 +534,7 @@ void tecla_hash(PIO pio, uint sm) {
     printf("Todos os LEDs foram acessos na cor branca com intensidade de 20%.\n");
 }
 
+// Função para apagar todos os leds
 void apagar_leds(uint32_t valor_led, PIO pio, uint sm) {
     for (int i = 0; i < NUM_PIXELS; i++) {
                 valor_led = matrix_rgb(0.0, 0.0, 0.0);  // Todos os LEDs desligados
@@ -568,6 +573,8 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
         sleep_ms(1500); // Intervalo de 1,5 segundo antes de acender a próxima letra
     }
 }
+
+// Função para acender os leds na cor vermelha com intensidade de 80%
 void tecla_c(uint32_t valor_led, PIO pio, uint sm)
 {
     for (int i = 0; i < NUM_PIXELS; i++)

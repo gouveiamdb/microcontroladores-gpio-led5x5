@@ -293,6 +293,25 @@ double tecla_8[125] = {
     };
 
 /**
+ * @brief Configura os GPIOs para o teclado matricial, LEDs e buzzer.
+ * 
+ * Configura as linhas (ROW) como saídas e as colunas (COL) como entradas com pull-up.
+ * Além de configurar os pinos dos LEDs e do buzzer como saídas.
+ */
+void setup_gpio();
+
+
+/**
+ * @brief Verifica qual tecla foi pressionada no teclado matricial.
+ * 
+ * Itera pelas linhas e verifica se alguma coluna foi pressionada.
+ * 
+ * @return O caractere da tecla pressionada ou '\0' se nenhuma tecla for pressionada.
+ */
+char scan_keypad();
+
+
+/**
  * @brief Executa comandos baseados na tecla pressionada.
  * 
  * Executa comandos para acender os LEDs e emitir som no buzzer.
@@ -338,6 +357,9 @@ void tecla_9(uint32_t valor_led, PIO pio, uint sm);
 
 // Realiza a ação associada à tecla 'C', controle dos LEDs para a cor vermelha com intensidade 80%.
 void tecla_c(uint32_t valor_led, PIO pio, uint sm);
+
+// Realiza a ação associada à tecla 'C', controle dos LEDs para a cor azul com intensidade 100%.
+void tecla_b(uint32_t valor_led, PIO pio, uint sm);
 
 // Aciona uma ação específica quando a tecla '1' é pressionada, alterando o estado dos LEDs
 void tecla_1(uint32_t valor_led, PIO pio, uint sm);

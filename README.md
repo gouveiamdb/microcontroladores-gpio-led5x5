@@ -31,7 +31,7 @@ O projeto é composto pelos seguintes arquivos principais:
 
 1. Clone o repositório do projeto:
    ```sh
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/gouveiamdb/microcontroladores-gpio-led5x5.git
    cd pio_matrix
    ```
 2. Crie um diretório de build e entre nele:

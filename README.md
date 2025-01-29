@@ -65,7 +65,7 @@ A equipe do projeto é composta pelos seguintes integrantes e suas respectivas c
 
 ## 🎥 Vídeo Demonstrativo
 
-[Insira o link do vídeo aqui]
+[Video Demonstrativo](https://youtu.be/sHr55Y_g8hU)
 
 ## 📜 Licença
 
